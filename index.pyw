@@ -3,16 +3,29 @@ from tkinter.scrolledtext import *
 from tkinter.messagebox import *
 
 mainw = Tk()
-
-to_translate = ScrolledText(mainw)
-translated = ScrolledText(mainw)
-infos1 = Label(mainw, text="Type your text to translate here :")
-translated.pack(side = RIGHT)
-infos1.pack(side = LEFT)
-to_translate.pack(side = LEFT)
+#===
+text_lf = LabelFrame(mainw, text="Text ...")
+text_lf.pack(fill="both", expand="no")
+#===
+to_translate_lf = LabelFrame(text_lf, text="Text to translate")
+to_translate_lf.pack(fill="both", expand="yes", side=LEFT)
+#---
+translated_lf = LabelFrame(text_lf, text="Translated text")
+translated_lf.pack(fill="both", expand="yes", side=RIGHT)
+#===
+to_translate = ScrolledText(to_translate_lf, wrap="word")
+translated = ScrolledText(translated_lf, wrap="word")
+#---
+infos1 = Label(to_translate_lf, text="Type your text to translate here :")
+infos2 = Label(translated_lf, text="See the translated text :")
+infos1.pack()
+infos2.pack()
+to_translate.pack()
+translated.pack()
 def translate_t():
     firstl = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Â", "À", "É", "Ë", "Ç", "Œ", "Æ", "Á","Ã", "Ō", "Ñ","Ą", "Ä", "Č", "Ĉ", "Ù", "È", "Ê"]
     secondl = ["N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "N", "R", "R", "P", "BR", "NR", "N", "N", "B", "A", "N", "N", "P", "P", "H", "R", "R"]
+    translated.configure(state='normal')
     translated.delete("1.0","end")
     #translated.insert("1.0", "text")
     #===test===
@@ -44,8 +57,9 @@ def translate_t():
         except ValueError:
             translated.insert("end", testvar)
         scrollletters = scrollletters + 1
+    translated.configure(state='disabled')
 translate=Button(mainw, text="Traduire", command=translate_t)
-translate.pack()
+translate.pack(side=TOP)
 
     
 #translate_t()
