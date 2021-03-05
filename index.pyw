@@ -58,7 +58,7 @@ def translate_t():
             translated.insert("end", testvar)
         scrollletters = scrollletters + 1
     translated.configure(state='disabled')
-translate=Button(mainw, text="Traduire", command=translate_t)
+translate=Button(mainw, text="Translate", command=translate_t)
 translate.pack(side=TOP)
 
     
